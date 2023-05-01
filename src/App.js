@@ -1,8 +1,11 @@
+import IncrementDecrement from "./components/incrementDecrement/IncrementDecrement";
+import Comments from "./components/Comments/Comments";
 
 function App() {
     return (
         <div className="App">
-            App
+            {/*<IncrementDecrement/>*/}
+            <Comments/>
         </div>
     );
 }
