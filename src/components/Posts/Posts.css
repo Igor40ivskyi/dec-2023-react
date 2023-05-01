@@ -1,0 +1,16 @@
+.main{
+    display: flex;
+}
+
+.postsList {
+    margin-left: 10px;
+    font-size: 25px;
+    width: 45%;
+}
+
+.singlePostInfo{
+    width: 45%;
+    margin-left: 20px;
+    font-size: 25px;
+    margin-top: 20px;
+}
