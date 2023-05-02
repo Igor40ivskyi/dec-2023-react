@@ -1,0 +1,7 @@
+.postBlock{
+    border: 2px solid darkgreen;
+    margin: 10px;
+    height: 50px;
+    padding: 10px;
+    font-size: 25px;
+}
