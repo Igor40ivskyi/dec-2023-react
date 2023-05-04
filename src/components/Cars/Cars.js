@@ -8,19 +8,21 @@ const Cars = () => {
 
     let [cars, setCars] = useState([]);
 
-    let [updateAfterCreate, setUpdateAfterCreate] = useState(null);
+    let [carForUpdate, setCarForUpdate] = useState(null);
+
+    let [reloadAfterCreate, setReloadAfterCreate] = useState(null);
 
     useEffect(() => {
         carsService.getAll().then(value => value.data).then(value => setCars(value));
-    }, [updateAfterCreate]);
+    }, [reloadAfterCreate]);
 
     return (
         <div>
             <div className={'formContainer'}>
-                <CarForm setUpdateAfterCreate={setUpdateAfterCreate}/>
+                <CarForm setUpdateAfterCreate={setReloadAfterCreate} carForUpdate={carForUpdate}/>
             </div>
             <hr/>
-            {cars.map(value => <Car key={value.id} car={value}/>)}
+            {cars.map(value => <Car key={value.id} car={value} setUpdateCar={setCarForUpdate}/>)}
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Car.css'
 
-const Car = ({car}) => {
+const Car = ({car,setUpdateCar}) => {
     const {id, brand, price, year} = car;
 
     return (
@@ -10,6 +10,7 @@ const Car = ({car}) => {
             <div className={'cardItem'}>brand :{brand}</div>
             <div className={'cardItem'}>price :{price}</div>
             <div className={'cardItem'}>year :{year}</div>
+            <button onClick={() => setUpdateCar(car)}>update</button>
         </div>
     );
 };
