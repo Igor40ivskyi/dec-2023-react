@@ -1,0 +1,19 @@
+.form{
+
+}
+
+.carInput {
+    width: 250px;
+    font-size: 20px;
+    font-family: Bahnschrift;
+}
+
+.carInput:focus{
+    background-color: cornflowerblue;
+}
+
+.carButton{
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+}
