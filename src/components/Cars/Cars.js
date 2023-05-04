@@ -22,7 +22,7 @@ const Cars = () => {
                 <CarForm setUpdateAfterCreate={setReloadAfterCreate} carForUpdate={carForUpdate}/>
             </div>
             <hr/>
-            {cars.map(value => <Car key={value.id} car={value} setUpdateCar={setCarForUpdate}/>)}
+            {cars.map(value => <Car key={value.id} car={value} setUpdateCar={setCarForUpdate} setReloadAfterCreate={setReloadAfterCreate} />)}
         </div>
     );
 };
