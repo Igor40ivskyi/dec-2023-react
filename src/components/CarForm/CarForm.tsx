@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {joiResolver} from '@hookform/resolvers/joi';
 
@@ -9,14 +9,23 @@ import {IUseState} from "../../types/useStateType";
 
 interface IProps {
     setOnChange: IUseState<boolean>;
+    carForUpdate: ICar | null;
 }
 
-const CarForm:FC<IProps> = ({setOnChange}) => {
+const CarForm:FC<IProps> = ({setOnChange,carForUpdate}) => {
 
     const {reset, register, handleSubmit, formState: {errors, isValid}, setValue} = useForm<ICar>({
         mode: 'all',
         resolver: joiResolver(carValidator)
     });
+
+    useEffect(() => {
+        if (carForUpdate) {
+
+
+            Object.entries
+        }
+    },[carForUpdate]);
 
     const save: SubmitHandler<ICar> = async (car) => {
         await carService.create(car);
@@ -24,13 +33,17 @@ const CarForm:FC<IProps> = ({setOnChange}) => {
         reset();
     };
 
+    const update: SubmitHandler<ICar> = async (car) => {
+
+    };
+
     return (
         <div>
-            <form onSubmit={handleSubmit(save)}>
+            <form onSubmit={handleSubmit(carForUpdate ? update : save)}>
                 <input type="text" placeholder={'brand'} {...register('brand')}/>
                 <input type="text" placeholder={'price'} {...register('price')}/>
                 <input type="text" placeholder={'year'} {...register('year')}/>
-                <button>save</button>
+                <button disabled={!isValid}>{carForUpdate?'update':'save'}</button>
             </form>
 
             <div>

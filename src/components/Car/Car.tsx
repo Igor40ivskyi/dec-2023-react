@@ -2,12 +2,14 @@ import React, {FC} from 'react';
 
 import {ICar} from "../../interfaces/carInterface";
 import './Car.css'
+import {IUseState} from "../../types/useStateType";
 
 interface IProps {
     car: ICar;
+    setCarForUpdate: IUseState<ICar | null>;
 }
 
-const Car: FC<IProps> = ({car}) => {
+const Car: FC<IProps> = ({car,setCarForUpdate}) => {
 
     const {id, brand, price, year} = car;
 
@@ -22,7 +24,7 @@ const Car: FC<IProps> = ({car}) => {
             </div>
 
             <div className={'carButtonsBlock'}>
-                <button>update</button>
+                <button onClick={()=>setCarForUpdate(car)}>update</button>
                 <button>delete</button>
             </div>
         </div>
