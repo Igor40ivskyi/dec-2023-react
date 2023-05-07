@@ -1,0 +1,11 @@
+.carInfoBlock {
+    margin: 15px;
+    font-family: Bahnschrift;
+    font-size: 22px;
+}
+
+.singleCarFullBlock {
+    padding: 20px;
+    border: 2px solid grey;
+    margin: 10px;
+}
