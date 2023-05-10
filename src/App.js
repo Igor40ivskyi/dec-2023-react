@@ -5,6 +5,7 @@ import About from "./components/About/About";
 import Users from "./components/Users/Users";
 import Posts from "./components/Posts/Posts";
 import UserDetails from "./components/UserDetails/UserDetails";
+import PostDetails from "./components/PostDetails/PostDetails";
 
 function App() {
     return (
@@ -26,7 +27,9 @@ function App() {
                         <Route path={'users'} element={<Users/>}>
                             <Route path={':id'} element={<UserDetails/>}/>
                         </Route>
-                        <Route path={'posts'} element={<Posts/>}/>
+                        <Route path={'posts'} element={<Posts/>}>
+                            <Route path={':id'} element={<PostDetails/>}/>
+                        </Route>
                     </Route>
                     <Route path={'/about'} element={<About/>}/>
                 </Routes>
