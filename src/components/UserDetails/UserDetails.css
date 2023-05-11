@@ -1,0 +1,14 @@
+.fullInfoBlock {
+    width: 500px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullInfoBlockItem {
+    font-size: 25px;
+    font-family: Bahnschrift;
+    color: darkblue;
+    margin: 5px;
+}
