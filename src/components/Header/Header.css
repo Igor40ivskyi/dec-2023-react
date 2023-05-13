@@ -10,11 +10,12 @@
     font-size: 22px;
 }
 
-.link {
+a.link{
     text-decoration: none;
     color: darkblue;
 }
 
-link{
-    color: darkgreen;
+a.active{
+    color: wheat;
+    font-weight: 700;
 }
