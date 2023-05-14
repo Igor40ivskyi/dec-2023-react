@@ -13,6 +13,7 @@ function App() {
             <MyContext.Provider value={'DDDDD'}>
                 <A value={value}/>
             </MyContext.Provider>
+
             <MyContext.Consumer>
                 {
                     (value) => {

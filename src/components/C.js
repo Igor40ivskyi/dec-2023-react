@@ -10,14 +10,19 @@ const C = ({value}) => {
             {value}
             <hr/>
             <MyContext.Consumer>
-                {(value)=>{
+                {(value) => {
                     return <h3>{value}</h3>;
-            }}
+                }}
             </MyContext.Consumer>
+            <button onClick={() => {
+                {
 
-            <MyContext.Provider value={'SSSSS'}>
+                    <MyContext.Provider value={'SSSSS'}>
 
-            </MyContext.Provider>
+                    </MyContext.Provider>
+                }
+            }}>TTT
+            </button>
         </div>
     );
 };
