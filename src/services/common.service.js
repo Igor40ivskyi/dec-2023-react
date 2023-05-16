@@ -9,4 +9,3 @@ const commonService = {
 export {
     commonService
 };
-
