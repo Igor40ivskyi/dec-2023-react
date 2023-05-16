@@ -1,7 +1,8 @@
-import React, {useReducer} from 'react';
+import React, {useContext, useEffect, useReducer} from 'react';
 import {useForm} from "react-hook-form";
 
 import './CatDogForm.css';
+import {CatDogContext} from "../../index";
 
 const reducer = (state, action) => {
 
@@ -19,13 +20,15 @@ const reducer = (state, action) => {
 
 };
 
-const CatDogForm = () => {
+const CatDogForm = ({setState}) => {
 
     const {register, reset, handleSubmit} = useForm();
 
     const [state, dispatch] = useReducer(reducer, {cats: [], dogs: []});
 
-    console.log(state);
+    useEffect(() => {
+        setState(state);
+    },[state]);
 
     const save = (value) => {
         if (value.catInput && value.dogInput) {
