@@ -1,8 +1,13 @@
 
+import CatDogForm from "./components/CatDogForm/CatDogForm";
+
 function App() {
+
     return (
         <div className="App">
-            App
+            <CatDogForm/>
+            <hr/>
+
         </div>
     );
 }
