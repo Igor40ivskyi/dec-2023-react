@@ -1,10 +1,15 @@
 import React from 'react';
 
-const Dog = ({dog}) => {
+const Dog = ({dog,setDogIdForDel}) => {
+
+    const {id, name} = dog;
+
     return (
         <div>
-            {dog}
-            <button>delete</button>
+            {name && <div>{id} {name}
+
+                <button onClick={() => setDogIdForDel(id)}>delete</button>
+            </div>}
         </div>
     );
 };

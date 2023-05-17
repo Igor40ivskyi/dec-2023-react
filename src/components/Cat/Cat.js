@@ -1,10 +1,15 @@
 import React from 'react';
 
-const Cat = ({cat}) => {
+const Cat = ({cat,setCatIdForDel}) => {
+    console.log(cat);
+    let {id, name} = cat;
 
     return (
         <div>
-            {cat}
+            {name && <div>{id} {name}
+
+                <button onClick={() => setCatIdForDel(id)}>delete</button>
+            </div>}
         </div>
     );
 };

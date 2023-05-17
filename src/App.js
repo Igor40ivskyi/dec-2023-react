@@ -9,13 +9,20 @@ function App() {
     const [state, setState] = useState(null);
 
     console.log(state);
+
+    const [catIdForDel, setCatIdForDel] = useState(null);
+
+
+    const [dogIdForDel, setDogIdForDel] = useState(null);
+
+
     return (
         <div className="App">
-            <CatDogForm setState={setState}/>
+            <CatDogForm setState={setState} catIdForDel={catIdForDel} dogIdForDel={dogIdForDel}/>
             <hr/>
             <div style={{display:"flex",justifyContent:'space-between'}}>
-                <Cats state={state} />
-                <Dogs state={state}/>
+                <Cats state={state} setCatIdForDel={setCatIdForDel}/>
+                <Dogs state={state} setDogIdForDel={setDogIdForDel}/>
             </div>
         </div>
     );
