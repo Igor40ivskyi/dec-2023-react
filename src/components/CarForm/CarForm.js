@@ -3,9 +3,13 @@ import {useForm} from "react-hook-form";
 import {carService} from "../../services/carService";
 import {joiResolver} from '@hookform/resolvers/joi';
 import {carValidator} from "../../validators/carValidator";
+import {useAppReducer} from "../../hooks/useAppReducer";
+import {carActions} from "../../reducers/car.reducer";
 
 
-const CarForm = ({setAllCars,carForUpdate}) => {
+const CarForm = () => {
+
+    const [{carForUpdate}, dispatch] = useAppReducer(state => state.cars);
 
     const {register, handleSubmit, reset, formState: {errors, isValid}, setValue} = useForm({
         mode: 'all',
@@ -14,20 +18,23 @@ const CarForm = ({setAllCars,carForUpdate}) => {
 
     useEffect(() => {
         if (carForUpdate) {
-            setValue('brand', carForUpdate.brand,{shouldValidate: true});
-            setValue('price', carForUpdate.price,{shouldValidate: true});
-            setValue('year', carForUpdate.year,{shouldValidate: true});
+            setValue('brand', carForUpdate.brand, {shouldValidate: true});
+            setValue('price', carForUpdate.price, {shouldValidate: true});
+            setValue('year', carForUpdate.year, {shouldValidate: true});
         }
-    },[carForUpdate]);
+    }, [carForUpdate, setValue]);
 
     const save = async (car) => {
-        const {data} = await carService.create(car);
-        setAllCars(prev => !prev);
+        await carService.create(car);
+        dispatch(carActions.setTrigger());
         reset();
     };
 
     const update = async (car) => {
-
+        await carService.updateById(carForUpdate.id, car);
+        dispatch(carActions.setTrigger());
+        reset();
+        dispatch(carActions.setCarForUpdate(null));
     };
 
     return (

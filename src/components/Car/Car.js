@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Car = ({car,setCarForUpdate}) => {
+import {useAppReducer} from "../../hooks/useAppReducer";
+import {carActions} from "../../reducers/car.reducer";
 
+const Car = ({car}) => {
+
+    const [,dispatch] = useAppReducer(state => state.cars);
+    
     const {id, brand, year, price} = car;
 
     return (
@@ -11,7 +16,7 @@ const Car = ({car,setCarForUpdate}) => {
             <div>year :{year}</div>
             <div>price :{price}</div>
 
-            <button onClick={() => setCarForUpdate(car)}>update</button>
+            <button onClick={() => dispatch(carActions.setCarForUpdate(car))}>update</button>
 
         </div>
     );
