@@ -1,8 +1,9 @@
+import CarPage from "./pages/CarPage";
 
 function App() {
     return (
         <div className="App">
-            App
+            <CarPage/>
         </div>
     );
 }
