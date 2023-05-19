@@ -6,7 +6,6 @@ const Cats = ({stateDispatch}) => {
     const {register,handleSubmit,reset} = useForm();
 
     const [{cats}, dispatch] = stateDispatch;
-    console.log(cats);
 
     const saveCat = (cat) => {
         dispatch({type:'ADD_CAT', payload: cat})
@@ -16,10 +15,12 @@ const Cats = ({stateDispatch}) => {
     return (
         <div>
             <form onSubmit={handleSubmit(saveCat)}>
-                <input type="text" placeholder={'cat'} {...register('name')}/>
-                <button>save</button>
+                <input style={{fontSize:22}} type="text" placeholder={'cat'} {...register('name')}/>
+                <button style={{fontSize:22}} >save</button>
             </form>
-            {cats.map(value=> <div key={value.id}>{value.name}</div>)}
+            {cats.map(value=> <div style={{fontSize:20}} key={value.id}>{value.name}
+            <button style={{fontSize:20}} onClick={()=> dispatch({type:'DEL_CAT',payload:value.id})} >del</button>
+            </div>)}
         </div>
     );
 };

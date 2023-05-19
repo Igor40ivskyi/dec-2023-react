@@ -10,11 +10,18 @@ const reducer = (state, action) => {
             cat.id = catId;
             return {...state, cats: [...state.cats, cat]}
         case 'ADD_DOG':
-            return
+            const dog = action.payload;
+            const dogId = state.dogs.slice(-1)[0]?.id + 1 || 1;
+            dog.id = dogId;
+            return {...state, dogs: [...state.dogs, dog]};
         case 'DEL_CAT':
-            return
+            const indexForDelCat = state.cats.findIndex(value => value.id === action.payload);
+            state.cats.splice(indexForDelCat, 1);
+            return {...state};
         case 'DEL_DOG':
-            return
+            const indexForDelDog = state.dogs.findIndex(value => value.id === action.payload);
+            state.dogs.splice(indexForDelDog, 1);
+            return {...state}
         default :
             return state;
     }
@@ -25,9 +32,9 @@ const CatDogPage = () => {
     const stateDispatch = useReducer(reducer, {cats: [], dogs: []});
 
     return (
-        <div>
+        <div style={{display:'flex',justifyContent:'space-around'}}>
             <Cats stateDispatch={stateDispatch}/>
-            <Dogs/>
+            <Dogs stateDispatch={stateDispatch}/>
         </div>
     );
 };
