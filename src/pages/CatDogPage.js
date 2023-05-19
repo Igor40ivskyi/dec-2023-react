@@ -5,7 +5,10 @@ import Dogs from "../components/Dogs/Dogs";
 const reducer = (state, action) => {
     switch (action.type) {
         case 'ADD_CAT':
-            return
+            const cat = action.payload;
+            const catId = state.cats.slice(-1)[0]?.id + 1 || 1;
+            cat.id = catId;
+            return {...state, cats: [...state.cats, cat]}
         case 'ADD_DOG':
             return
         case 'DEL_CAT':
@@ -23,7 +26,7 @@ const CatDogPage = () => {
 
     return (
         <div>
-            <Cats/>
+            <Cats stateDispatch={stateDispatch}/>
             <Dogs/>
         </div>
     );
