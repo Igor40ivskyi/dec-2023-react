@@ -2,14 +2,14 @@ import React, {useContext, useEffect} from 'react';
 import {useForm} from "react-hook-form";
 import {carService} from "../../services/car.service";
 import {ReducerContext} from "../../hoc/Provider";
+import {useAppReducer} from "../../hooks/useAppReducer";
+import {carActions} from "../../reducers/car.reducer";
 
 const CarForm = () => {
 
     const {register, handleSubmit, reset, setValue} = useForm();
 
-    const {cars} = useContext(ReducerContext);
-
-    const [{carForUpdate}, dispatch] = cars;
+    const [{carForUpdate},dispatch] = useAppReducer(state => state.cars);
 
     useEffect(() => {
         if (carForUpdate) {
@@ -17,19 +17,19 @@ const CarForm = () => {
             setValue('price', carForUpdate.price);
             setValue('year', carForUpdate.year);
         }
-    }, [carForUpdate]);
+    }, [carForUpdate, setValue]);
 
     const saveCar = async (car) => {
         await carService.create(car);
-        dispatch({type: 'TRIGGER'});
+        dispatch(carActions.setTrigger());
         reset();
     };
 
     const updateCar = async (car) => {
         await carService.updateById(carForUpdate.id, car);
-        dispatch({type: 'TRIGGER'});
+        dispatch(carActions.setTrigger());
         reset();
-        dispatch({type:'SET_CAR_FOR_UPDATE', payload: null})
+        dispatch(carActions.setCarForUpdate(null));
     };
 
     return (
