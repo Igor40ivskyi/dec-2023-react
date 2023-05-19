@@ -1,7 +1,6 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useForm} from "react-hook-form";
 import {carService} from "../../services/car.service";
-import {ReducerContext} from "../../hoc/Provider";
 import {useAppReducer} from "../../hooks/useAppReducer";
 import {carActions} from "../../reducers/car.reducer";
 
