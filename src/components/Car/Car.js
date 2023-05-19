@@ -5,7 +5,7 @@ import {carActions} from "../../reducers/car.reducer";
 
 const Car = ({car}) => {
 
-    const [,dispatch] = useAppReducer(state => state.cars);
+    const [,dispatch] = useAppReducer((context) => context.cars);
     
     const {id, brand, year, price} = car;
 

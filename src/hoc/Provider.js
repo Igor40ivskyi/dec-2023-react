@@ -1,7 +1,10 @@
-import React, {createContext, useReducer} from 'react';
+import React, {useReducer} from 'react';
+import {createContext} from "react";
 import {carInitialState, carReducer} from "../reducers/car.reducer";
 
-export const StateContext = createContext(null);
+const StateContext = createContext(null);
+
+
 
 
 const Provider = ({children}) => {
@@ -17,4 +20,7 @@ const reducers = {
     );
 };
 
-export default Provider;
+export {
+    Provider,
+    StateContext
+};

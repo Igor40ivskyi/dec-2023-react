@@ -6,11 +6,11 @@ import {carActions} from "../../reducers/car.reducer";
 
 const Cars = () => {
 
-    const [{cars, trigger}, dispatch] = useAppReducer((state) => state.cars);
+    const [{cars,trigger}, dispatch] = useAppReducer(state => state.cars);
 
     useEffect(() => {
         carService.getAll().then(value => value.data).then(value => dispatch(carActions.setAll(value)));
-    }, [dispatch,trigger]);
+    }, [dispatch, trigger]);
 
 
     return (

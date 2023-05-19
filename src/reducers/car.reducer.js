@@ -10,13 +10,11 @@ const carActions = {
     setTrigger: () => ({type: carActionTypes.TRIGGER})
 };
 
-
 const carInitialState = {
     cars: [],
     carForUpdate: null,
     trigger: null
 };
-
 
 const carReducer = (state, action) => {
     switch (action.type) {
@@ -28,7 +26,9 @@ const carReducer = (state, action) => {
             return {...state, trigger: !state.trigger};
         default:
             return state;
+
     }
+
 };
 
 export {
@@ -36,5 +36,4 @@ export {
     carInitialState,
     carReducer
 };
-
 
