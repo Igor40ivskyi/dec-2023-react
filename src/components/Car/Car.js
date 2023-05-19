@@ -1,18 +1,17 @@
-import React, {useContext} from 'react';
-import {ReducerContext} from "../../hoc/Provider";
+import React from 'react';
 import {carService} from "../../services/car.service";
+import {carActions} from "../../reducers/car.reducer";
+import {useAppReducer} from "../../hooks/useAppReducer";
 
 const Car = ({car}) => {
 
     const {id, brand, price, year} = car;
 
-    const {cars} = useContext(ReducerContext);
-
-    const [, dispatch] = cars;
+    const [,dispatch] = useAppReducer(state => state.cars);
 
     const deleteCar = async () => {
         await carService.deleteById(car.id);
-        dispatch({type: 'TRIGGER'});
+        dispatch(carActions.setTrigger());
     };
 
     return (
@@ -21,7 +20,7 @@ const Car = ({car}) => {
             <div>brand - {brand}</div>
             <div>price - {price}</div>
             <div>year - {year}</div>
-            <button onClick={() => dispatch({type: 'SET_CAR_FOR_UPDATE', payload: car})}>UPDATE</button>
+            <button onClick={() => dispatch(carActions.setCarForUpdate(car))}>UPDATE</button>
             <button onClick={() => deleteCar()}>DELETE</button>
         </div>
     );
