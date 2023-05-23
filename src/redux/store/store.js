@@ -1,4 +1,6 @@
-import {createStore} from "redux";
-import {baseReducer} from "../reducers/base.reducer";
+import {combineReducers, createStore} from "redux";
+import {commentReducer, postsReducer, userReducer} from "../reducers";
 
-export const store = createStore(baseReducer);
+export const store = createStore(combineReducers({userReducer, postsReducer, commentReducer}));
+
+

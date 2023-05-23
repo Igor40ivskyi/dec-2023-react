@@ -14,7 +14,7 @@ const UsersPage = () => {
     useEffect(() => {
         commonService.getUsers().then(value => value.data)
             .then(value => dispatch(getUsers(value)));
-    },[]);
+    },[dispatch]);
 
 
     return (

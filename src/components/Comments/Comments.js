@@ -4,7 +4,7 @@ import Comment from "../Comment/Comment";
 
 const Comments = () => {
 
-    const comments = useSelector(state => state.comments);
+    const {comments} = useSelector(state => state.commentReducer);
 
     return (
         <div>
