@@ -3,26 +3,29 @@ import {carsService} from "../../services/carsService";
 import Car from "../Car/Car";
 import CarForm from "../CarForm/CarForm";
 import './Cars.css'
+import {useDispatch, useSelector} from "react-redux";
+import {baseActionCreator} from "../../redux/actions/base.action-creator";
 
 const Cars = () => {
 
-    let [cars, setCars] = useState([]);
+    const state = useSelector(state => state);
 
-    let [carForUpdate, setCarForUpdate] = useState(null);
+    const {cars, trigger} = state;
 
-    let [reloadAfterCreate, setReloadAfterCreate] = useState(null);
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
-        carsService.getAll().then(value => value.data).then(value => setCars(value));
-    }, [reloadAfterCreate]);
+        carsService.getAll().then(value => value.data).then(value => dispatch(baseActionCreator.setCars(value)));
+    }, [trigger]);
 
     return (
         <div>
             <div className={'formContainer'}>
-                <CarForm setUpdateAfterCreate={setReloadAfterCreate} carForUpdate={carForUpdate}/>
+                <CarForm/>
             </div>
             <hr/>
-            {cars.map(value => <Car key={value.id} car={value} setUpdateCar={setCarForUpdate} setReloadAfterCreate={setReloadAfterCreate} />)}
+            {cars.map(value => <Car key={value.id} car={value}/>)}
         </div>
     );
 };

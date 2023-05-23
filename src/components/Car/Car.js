@@ -1,15 +1,18 @@
 import React from 'react';
 import './Car.css'
-import {axiosService} from "../../services/axiosService";
 import {carsService} from "../../services/carsService";
+import {useDispatch} from "react-redux";
+import {baseActionCreator} from "../../redux/actions/base.action-creator";
 
-const Car = ({car,setUpdateCar,setReloadAfterCreate}) => {
+const Car = ({car}) => {
+
     const {id, brand, price, year} = car;
 
+    const dispatch = useDispatch();
+
     const delCar = async () => {
-        const res = await carsService.deleteById(id);
-        console.log(res);
-        setReloadAfterCreate(prev => !prev);
+        await carsService.deleteById(id);
+        dispatch(baseActionCreator.setTrigger());
     };
 
     return (
@@ -18,7 +21,8 @@ const Car = ({car,setUpdateCar,setReloadAfterCreate}) => {
             <div className={'cardItem'}>brand :{brand}</div>
             <div className={'cardItem'}>price :{price}</div>
             <div className={'cardItem'}>year :{year}</div>
-            <button onClick={() => setUpdateCar(car)}>update</button>
+
+            <button onClick={() => dispatch(baseActionCreator.setCarForUpdate(car))}>update</button>
             <button onClick={()=>delCar()}>del</button>
         </div>
     );
