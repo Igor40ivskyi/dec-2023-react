@@ -1,8 +1,12 @@
+import {ComponentOne, ComponentTwo, Header} from "./components";
+
 
 function App() {
     return (
         <div className="App">
-            App
+            <Header/>
+            <ComponentOne/>
+            <ComponentTwo/>
         </div>
     );
 }
