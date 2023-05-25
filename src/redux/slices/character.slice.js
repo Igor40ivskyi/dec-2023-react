@@ -10,7 +10,7 @@ const slice = createSlice({
     name: 'characterSlice',
     initialState,
     reducers: {
-        setAll: (state, action) => {
+        setCharacters: (state, action) => {
             const {results, info: {prev, next}} = action.payload;
             state.characters = results;
             state.prevPage = prev;
