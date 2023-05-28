@@ -12,13 +12,14 @@ const UserForm = () => {
     const save = async (user) => {
         await userService.postUser(user);
         reset();
-        dispatch(userActions.trigger());
+        dispatch(userActions.setUsers());
     };
 
     return (
         <form onSubmit={handleSubmit(save)}>
             <input type="text" placeholder={'name'} {...register('name')}/>
             <input type="text" placeholder={'username'} {...register('username')}/>
+            <input type="text" placeholder={'email'} {...register('email')}/>
             <button>save</button>
         </form>
     );

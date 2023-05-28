@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, current} from "@reduxjs/toolkit";
 
 const initialState = {
     users: [],
@@ -10,12 +10,16 @@ const slice = createSlice({
     initialState,
     reducers: {
         setUsers: (state, action) => {
-            console.log(state.users);
-            state.users = action.payload;
+            if (action.payload?.length) {
+                state.users = action.payload;
+            }else {
+                console.log('ELSE')
+                state.users = [...state.users, {...action.payload, id: state.users.length + 1}];
+            }
         },
         trigger: (state,action) => {
-            console.log(state);
-            console.log(action);
+            console.log('sdf')
+            console.log(current(state));
             state.trigger = !state.trigger;
         },
     }

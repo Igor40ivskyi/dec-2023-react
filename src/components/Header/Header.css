@@ -1,0 +1,19 @@
+.header{
+    height: 50px;
+    background-color: #131333;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+}
+
+.header a {
+    color: #6e6e99;
+    text-decoration: none;
+    font-family: Bahnschrift;
+    font-weight: 700;
+}
+
+.header a.active{
+    color: whitesmoke;
+}

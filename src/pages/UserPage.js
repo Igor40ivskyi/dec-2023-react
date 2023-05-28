@@ -4,7 +4,6 @@ const UserPage = () => {
     return (
         <div>
             <UserForm/>
-            <hr/>
             <Users/>
         </div>
     );

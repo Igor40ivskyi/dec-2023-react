@@ -1,7 +1,10 @@
+import {CommentForm} from "../components";
+
 const CommentPage = () => {
     return (
         <div>
-            CommentPage
+            <CommentForm/>
+
         </div>
     );
 };

@@ -6,13 +6,13 @@ import {User} from "../User/User";
 
 const Users = () => {
 
-    const {users, trigger} = useSelector(state => state.users);
+    const {users} = useSelector(state => state.users);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         userService.getUsers().then(value => value.data).then(value => dispatch(userActions.setUsers(value)));
-    }, [dispatch, trigger]);
+    }, [dispatch]);
 
     return (
         <div>
