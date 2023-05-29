@@ -19,7 +19,7 @@ const CarForm = () => {
             setValue('price', carForUpdate.price);
             setValue('year', carForUpdate.year);
         }
-    },[carForUpdate]);
+    },[carForUpdate,setValue]);
 
     const save = async (car) => {
         await carService.postCar(car);

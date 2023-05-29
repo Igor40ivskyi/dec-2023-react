@@ -1,4 +1,3 @@
-const placeholderBaseURL = 'https://jsonplaceholder.typicode.com';
 const owuLinkpcBaseURL = 'http://owu.linkpc.net/carsAPI/v1';
 
 const endpoints = {
@@ -8,7 +7,6 @@ const endpoints = {
 };
 
 export {
-    placeholderBaseURL,
     owuLinkpcBaseURL,
     endpoints,
 };

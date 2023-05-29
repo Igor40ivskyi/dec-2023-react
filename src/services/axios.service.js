@@ -1,11 +1,8 @@
 import axios from "axios";
-import {owuLinkpcBaseURL, placeholderBaseURL} from "../constants";
-
-const placeholderAxiosService = axios.create({baseURL: placeholderBaseURL});
+import {owuLinkpcBaseURL} from "../constants";
 
 const owuLinkpcAxiosService = axios.create({baseURL: owuLinkpcBaseURL});
 
 export {
-    placeholderAxiosService,
     owuLinkpcAxiosService,
 };
