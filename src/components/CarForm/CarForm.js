@@ -8,7 +8,6 @@ const CarForm = () => {
 
     const {carForUpdate} = useSelector(state => state.cars);
 
-    console.log(carForUpdate);
     const dispatch = useDispatch();
 
     const {register, handleSubmit, reset, setValue} = useForm();
@@ -22,15 +21,13 @@ const CarForm = () => {
     },[carForUpdate,setValue]);
 
     const save = async (car) => {
-        await carService.postCar(car);
+        await dispatch(carActions.create({car}));
         reset();
-        dispatch(carActions.trigger());
     };
 
     const update = async (car) => {
-        await carService.updateCar(carForUpdate.id, car);
+        await dispatch(carActions.update({id: carForUpdate.id, car}));
         reset();
-        dispatch(carActions.trigger());
     };
 
     return (
