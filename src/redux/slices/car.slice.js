@@ -66,21 +66,31 @@ const slice = createSlice({
         builder
             .addCase(getCars.fulfilled, (state, action) => {
                 state.cars = action.payload;
-                state.loading = false;
             })
-            .addCase(getCars.pending,state => {
-                state.loading = true;
-            })
+            // .addCase(getCars.pending,state => {
+            //     state.loading = true;
+            // })
             .addCase(updateCar.fulfilled,state=>{
                 state.carForUpdate = null;
             })
+            // .addCase(createCar.pending,state => {
+            //     state.loading = true;
+            // })
+            // .addCase(createCar.fulfilled,state => {
+            //     state.loading = false;
+            // })
             .addMatcher(isFulfilled(),state => {
-                state.trigger = !state.trigger;
-                // state.loading = false;
+                console.log('FULFILED');
+                state.loading = false;
             })
             .addMatcher(isPending(getCars),state=>{
-                // state.loading = false;
+                console.log('PENDING')
+                state.loading = true;
             })
+            .addMatcher(isFulfilled(delCar,updateCar,createCar),state => {
+                state.trigger = !state.trigger;
+            })
+
 });
 
 const {reducer: carReducer, actions} = slice;
