@@ -5,7 +5,7 @@ import {Car} from "../Car/Car";
 
 const Cars = () => {
 
-    const {cars,trigger} = useSelector(state => state.cars);
+    const {cars,trigger,loading} = useSelector(state => state.cars);
 
     const dispatch = useDispatch();
 
@@ -15,6 +15,7 @@ const Cars = () => {
 
     return (
         <div>
+            {loading && <h1>LOADING...</h1>}
             {cars.map(car => <Car key={car.id} car={car}/>)}
         </div>
     );

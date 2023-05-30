@@ -1,10 +1,12 @@
-import {createAsyncThunk, createSlice, isFulfilled} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isPending} from "@reduxjs/toolkit";
 import {carService} from "../../services/car.service";
 
 const initialState = {
     cars: [],
     carForUpdate: null,
     trigger:false,
+    error:null,
+    loading:false,
 };
 
 const getCars = createAsyncThunk(
@@ -64,12 +66,20 @@ const slice = createSlice({
         builder
             .addCase(getCars.fulfilled, (state, action) => {
                 state.cars = action.payload;
+                state.loading = false;
+            })
+            .addCase(getCars.pending,state => {
+                state.loading = true;
             })
             .addCase(updateCar.fulfilled,state=>{
                 state.carForUpdate = null;
             })
-            .addMatcher(isFulfilled,state => {
+            .addMatcher(isFulfilled(),state => {
                 state.trigger = !state.trigger;
+                // state.loading = false;
+            })
+            .addMatcher(isPending(getCars),state=>{
+                // state.loading = false;
             })
 });
 
