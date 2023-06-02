@@ -1,8 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {carReducer} from "./slice";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+    carReducer:carReducer,
+});
 
-export const setupStore = () => configureStore({
+const setupStore = () => configureStore({
     reducer: rootReducer,
 });
 
@@ -15,5 +18,9 @@ export type {
     AppStore,
     AppDispatch,
 };
+
+export {
+    setupStore,
+}
 
 
