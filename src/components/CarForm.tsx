@@ -17,7 +17,7 @@ const CarForm = () => {
             setValue('year', carForUpdate.year);
             dispatch(carActions.setError(null));
         }
-    },[carForUpdate]);
+    },[carForUpdate,dispatch,setValue]);
 
     const save = async (car:ICar) => {
         await dispatch(carActions.postCar({car}));
