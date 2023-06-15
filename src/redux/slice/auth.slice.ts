@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, isFulfilled, isRejectedWithValue} from "@reduxjs/toolkit";
-import {IAuth, IErrorAuth,} from "../../interfaces";
+import {IAuth, IErrorAuth, IUser,} from "../../interfaces";
 import {AxiosError} from "axios";
 import {authService} from "../../services";
 
@@ -16,15 +16,12 @@ const register = createAsyncThunk<void, IAuth>(
     'authSlice/register',
     async (user, {rejectWithValue}) => {
         try {
-            console.log(user);
             await authService.register(user);
         } catch (e) {
             const err = e as AxiosError;
             return rejectWithValue(err.response.data);
         }
     });
-
-
 
 const slice = createSlice({
     name: 'authSlice',
