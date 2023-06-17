@@ -27,10 +27,10 @@ axiosService.interceptors.response.use(
                     await authService.refresh();
                     isRefreshing = false;
                     return axiosService(originalRequest);
-                }catch(e) {
+                }catch (e) {
                     authService.deleteTokens();
                     isRefreshing = false;
-                    return Promise.reject();
+                    return Promise.reject(error);
                 }
             }
             return Promise.reject(error);
