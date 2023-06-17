@@ -19,6 +19,16 @@ class AuthService {
         return me;
     }
 
+    async refresh(): Promise<void> {
+        const refreshToken = this.getRefreshToken();
+        if (!refreshToken) {
+            throw new Error('Refresh token is not exists');
+        }
+        const {data}: AxiosResponse<ITokens> = await axiosService.post(urls.auth.refresh, {refresh: refreshToken});
+        this.setTokens(data);
+    }
+
+
     me(): IRes<IUser> {
         return axiosService.get(urls.auth.me);
     }
@@ -30,6 +40,10 @@ class AuthService {
 
     getAccessToken(): string {
         return localStorage.getItem(this.accessKey);
+    }
+
+    private getRefreshToken ():string{
+        return localStorage.getItem(this.refreshKey);
     }
 
     deleteTokens(): void {

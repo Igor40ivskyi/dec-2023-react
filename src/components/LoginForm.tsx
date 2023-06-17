@@ -1,13 +1,22 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IAuth} from "../interfaces";
+import {useAppDispatch} from "../hooks";
+import {authActions} from "../redux";
+import {useNavigate} from "react-router-dom";
 
 const LoginForm = () => {
 
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const {handleSubmit, register,formState:{isValid}} = useForm<IAuth>();
 
-    const login: SubmitHandler<IAuth> = (user) => {
+    const login: SubmitHandler<IAuth> = async (user) => {
+        const {meta:{requestStatus}} = await dispatch(authActions.login(user));
 
-
+        if (requestStatus === 'fulfilled') {
+            navigate('/cars');
+        }
     };
 
     return (
