@@ -1,0 +1,19 @@
+.header {
+    height: 70px;
+    background-color: dimgrey;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.header a {
+    text-decoration: none;
+    color: snow;
+    font-family: Bahnschrift;
+    font-size: 22px;
+    margin: 10px;
+}
+
+.header a.active {
+    color: darkred;
+}
