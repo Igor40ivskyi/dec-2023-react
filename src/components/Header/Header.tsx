@@ -1,12 +1,21 @@
 import {NavLink} from "react-router-dom";
 import './Header.css';
-import {useAppSelector} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {useEffect} from "react";
+import {authService} from "../../services/auth.service";
+import {authActions} from "../../redux/slices/auth.slice";
 
 const Header = () => {
 
     const {me} = useAppSelector(state => state.authReducer);
 
+    const dispatch = useAppDispatch();
 
+    useEffect(() => {
+        if (!me && authService.getAccessToken()) {
+            dispatch(authActions.me());
+        }
+    }, []);
     return (
         <div className={'header'}>
             {
