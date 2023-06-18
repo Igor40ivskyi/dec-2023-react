@@ -3,6 +3,5 @@ export interface IPagination<T> {
     total_pages: number;
     prev: string;
     next: string;
-    items: T
+    items: T;
 }
-

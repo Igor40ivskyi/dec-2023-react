@@ -9,7 +9,9 @@ const CarForm:FC = () => {
     const {register, reset, handleSubmit, setValue} = useForm<ICar>();
 
 
-    const {carForUpdate} = useAppSelector(state => state.carReducer);
+    const {carForUpdate, next} = useAppSelector(state => state.carReducer);
+
+    console.log(next);
     const dispatch = useAppDispatch();
 
     useEffect(() => {

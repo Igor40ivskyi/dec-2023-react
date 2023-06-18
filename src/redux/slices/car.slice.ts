@@ -8,6 +8,8 @@ import {IPagination} from "../../interfaces/pagination.interface";
 
 interface IState {
     cars: ICar[];
+    prev: string;
+    next: string;
     errors: IError;
     trigger:boolean;
     carForUpdate:ICar;
@@ -15,6 +17,8 @@ interface IState {
 
 const initialState: IState = {
     cars: [],
+    prev: null,
+    next: null,
     errors: null,
     carForUpdate: null,
     trigger: false,
@@ -25,10 +29,10 @@ const getAll = createAsyncThunk<IPagination<ICar[]>, void>(
     async (_, {rejectWithValue}) => {
         try {
             const {data} = await carService.getAll();
-            return data;
+            return data
         } catch (e) {
-            const err = e as AxiosError;
-            return rejectWithValue(err.response.data);
+            const err = e as AxiosError
+            return rejectWithValue(err.response.data)
         }
     }
 );
@@ -80,7 +84,11 @@ const slice = createSlice({
     extraReducers : builder =>
         builder
             .addCase(getAll.fulfilled,(state,action)=>{
-
+                console.log(action.payload);
+                const {prev, next, items} = action.payload;
+                state.cars = items;
+                state.prev = prev;
+                state.next = next;
             })
             .addCase(update.fulfilled,state => {
                 state.carForUpdate = null;
