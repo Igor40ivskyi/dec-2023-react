@@ -2,11 +2,13 @@ import axios, {AxiosError} from "axios";
 import {baseURL, urls} from "../constants";
 import {authService} from "./auth.service";
 import {IWaitListCB} from "../types";
+import {createBrowserHistory} from 'history';
 
 const axiosService = axios.create({baseURL});
 
 let isRefreshing = false;
 const waitList: IWaitListCB[] = [];
+const history = createBrowserHistory({window});
 
 axiosService.interceptors.request.use(req => {
     const access = authService.getAccessToken();
@@ -34,6 +36,7 @@ axiosService.interceptors.response.use(
                 }catch (e) {
                     authService.deleteTokens();
                     isRefreshing = false;
+                    history.replace('login?expSession=true');
                     return Promise.reject(error)
                 }
             }
@@ -64,7 +67,8 @@ const afterRefresh = () => {
 };
 
 export {
-    axiosService
+    axiosService,
+    history
 };
 
 
