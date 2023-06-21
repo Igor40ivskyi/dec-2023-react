@@ -7,6 +7,7 @@ const urls = {
     cars: {
         cars,
         byId: (id: number): string => `${cars}/${id}`,
+        addPhoto: (id: number): string => `${cars}/${id}/photo`,
     },
     auth: {
         register: '/users',
