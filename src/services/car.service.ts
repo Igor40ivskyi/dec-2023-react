@@ -17,6 +17,10 @@ class СarService {
     deleteById(id: number): IRes<void> {
         return axiosService.delete(urls.cars.byId(id))
     }
+
+    addPhoto:(id:number,photo:FormData):IRes<ICar> {
+
+    }
 }
 
 export const carService = new СarService();
