@@ -7,9 +7,11 @@ class СarService {
     getAll(): IRes<IPagination<ICar[]>> {
         return axiosService.get(urls.cars.cars)
     }
+
     create(car: ICar): IRes<ICar> {
         return axiosService.post(urls.cars.cars, car)
     }
+
     updateById(id: number, car: ICar): IRes<ICar> {
         return axiosService.put(urls.cars.byId(id), car)
     }
@@ -18,9 +20,11 @@ class СarService {
         return axiosService.delete(urls.cars.byId(id))
     }
 
-    addPhoto:(id:number,photo:FormData):IRes<ICar> {
-
+    addPhoto(id: number, photo: FormData): IRes<ICar> {
+        return axiosService.put(urls.cars.addPhoto(id), photo);
     }
+
 }
+
 
 export const carService = new СarService();
